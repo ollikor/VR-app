@@ -4,16 +4,10 @@ import { Component } from 'react'
 import { Table } from 'react-bootstrap';
 
 class TabContent extends Component {
-
-    state = {
-        key: 'arrival'
-    }
-
     render() {
-        console.log(this.props.results)
         return (
             <div className="TabContent">
-                <Table borderless>
+                <Table borderless responsive>
                     <thead>
                         <tr>
                             <th>{this.props.titleOne}</th>
@@ -24,13 +18,14 @@ class TabContent extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.props.results.length > 0 ?
-                                this.props.results.map((item, index) => (
+                            this.props.result.length > 0 ?
+                                this.props.result.map((item, index) => (
+                                    console.log(item),
                                     <tr key={index}>
-                                        <td>{item.Train}</td>
-                                        <td>{item.DepartureStation}</td>
-                                        <td>{item.Terminal}</td>
-                                        <td>{item.Time}</td>
+                                        <td>{item.trainType + ' ' + item.trainNumber}</td>
+                                        <td>{item.departureStation}</td>
+                                        <td>{item.terminal}</td>
+                                        <td>{item.arrival}</td>
                                     </tr>
                                 )) 
                             : null

@@ -16,17 +16,28 @@
 }
 
 .Search {
-  width: 50%;
-  font-weight: bold;
+  /* width: 50%; */
   padding: 0px 30px 20px 30px;
+}
+
+.SearchTitle {
+  font-weight: bold;
+}
+
+.SearchResultContainer {
+  position: absolute;
+  background-color: white;
+  /* padding: 10px 20px; */
+  box-shadow: 0 2px 5px black;
+  
 }
 
 .Results {
-  padding: 0px 30px 20px 30px;
+  padding: 20px 30px 20px 30px;
 }
 
 .TabContent {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .nav-tabs .nav-link {
