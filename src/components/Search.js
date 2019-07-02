@@ -3,7 +3,7 @@ import { Component } from 'react'
 
 import { GetStationCodes, GetCurrentStation } from '../api/index'
 
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Dropdown } from 'react-bootstrap'
 import { getCurves } from 'crypto';
 
 class Search extends Component {
@@ -49,11 +49,12 @@ class Search extends Component {
         return (
             <div className="Search">
                 <Form>
-                    <Form.Group className="col col-sm-12 col-md-8">
+                    <Form.Group className="col col-sm-12 col-md-8 p-0">
                         <Form.Label className="SearchTitle">Search for a station name</Form.Label>
                         <Form.Control size="sm" type="search" value={this.state.searchText} onChange={(e) => this.handleSearch(e)} />
                     </Form.Group>
                 </Form>
+                
                 <div>
                     <div className="SearchResultContainer">
                         {this.state.results.map((item, index) => 

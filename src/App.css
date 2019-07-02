@@ -48,3 +48,17 @@ th {
   font-weight: normal;
   color: rgb(146, 146, 146);
 }
+
+.Cancelled {
+  color: red;
+}
+
+.LatestArrival {
+  margin: 0;
+  color: red;
+}
+
+.ScheduleArrival {
+  margin: 0;
+  font-size: 12px;
+}
