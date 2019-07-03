@@ -16,7 +16,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="col col-sm-12 col-md-6 p-0 App">
         <div className="Container">
           <Header />
           <Search result={(trains, code, stations) => this.setState({trains: trains, code, stations})} />

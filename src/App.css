@@ -1,7 +1,6 @@
 .App {
-  width: 50%;
-  margin: 50px auto;
-  box-shadow: 0 2px 6px -1px black;
+  margin: 0px auto;
+  box-shadow: 0 3px 5px -2px rgb(0, 0, 0);
 }
 
 .Container {
@@ -10,26 +9,17 @@
 
 .Header {
   padding: 5px 30px;
-  color: white;
+  color: rgb(255, 255, 255);
   background-color: rgb(47, 165, 0);
-  box-shadow: 0 1px 5px -2px black;
+  box-shadow: 0 2px 5px -2px rgb(0, 0, 0);
 }
 
 .Search {
-  /* width: 50%; */
   padding: 0px 30px 20px 30px;
 }
 
 .SearchTitle {
   font-weight: bold;
-}
-
-.SearchResultContainer {
-  position: absolute;
-  background-color: white;
-  /* padding: 10px 20px; */
-  box-shadow: 0 2px 5px black;
-  
 }
 
 .Results {
@@ -50,15 +40,15 @@ th {
 }
 
 .Cancelled {
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
-.LatestArrival {
+.LatestTime {
   margin: 0;
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
-.ScheduleArrival {
+.ScheduleTime {
   margin: 0;
   font-size: 12px;
 }

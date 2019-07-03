@@ -33,7 +33,15 @@ class TabContent extends Component {
                                         <td>{item.trainType + ' ' + item.trainNumber}</td>
                                         <td>{item.departureStation}</td>
                                         <td>{item.terminal}</td>
-                                        <td>{item.lateArrival !== null ? <div><p className="LatestArrival">{item.lateArrival}</p><p className="ScheduleArrival">{`(${item.arrival})`}</p></div>  : item.arrival}{item.cancelled ? <p className="Cancelled">Cancelled</p>:null}</td>
+                                        <td>{item.lateTime !== null ? 
+                                            <div>
+                                                <p className="LatestTime">{item.lateTime}</p>
+                                                <p className="ScheduleTime">{'(' + ('0' + item.time.getHours()).slice(-2) + ':' + ('0' + item.time.getMinutes()).slice(-2) + ')'}</p>
+                                            </div>  
+                                            : ('0' + item.time.getHours()).slice(-2) + ':' + ('0' + item.time.getMinutes()).slice(-2)}{item.cancelled ? 
+                                            <p className="Cancelled">Cancelled</p>
+                                            :null}
+                                        </td>
                                     </tr>
                                 )) 
                             : null

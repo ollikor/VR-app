@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Header = () => (
-    <p className="Header">Train information of station</p>
+    <p className="Header">Aseman junatiedot</p>
 )
 
 export default Header;

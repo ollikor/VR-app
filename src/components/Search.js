@@ -3,67 +3,68 @@ import { Component } from 'react'
 
 import { GetStationCodes, GetCurrentStation } from '../api/index'
 
-import { Form, Button, Dropdown } from 'react-bootstrap'
-import { getCurves } from 'crypto';
+import { Form, ListGroup } from 'react-bootstrap'
 
 class Search extends Component {
 
     state = {
         searchText: '',
-        results: [],
-        stations: []
+        stations: [],
+        stationsCodes: []
     }
+
+    // Fetch all stationscodes from API
+    async componentDidMount() {
+        let stationsCodes = await GetStationCodes();
+        this.setState({ stationsCodes });
+    }
+
+    // Get value from input and check if input value match with stations
+    // Set all match to stations array
     handleSearch = async (e) => {
-        let station = (e.target.value).charAt(0).toUpperCase() + (e.target.value).slice(1);
-        this.setState({searchText: station});
-
-        let results = [];
         let stations = [];
+        let searchText = (e.target.value).charAt(0).toUpperCase() + (e.target.value).slice(1);
+        this.setState({ searchText });
 
-        stations = await GetStationCodes();
-        this.setState({stations});
+        let stationsCodes = this.state.stationsCodes;
 
-        for(let i = 0; i < stations.length; i++){
-            if(stations[i].station.includes(this.state.searchText)){
-                results.push(stations[i]);
-                this.setState({ results: results });
+        if (searchText.length > 0) {
+            for (let i = 0; i < stationsCodes.length; i++) {
+                let match = stationsCodes[i].station.includes(searchText);
+                if (match) {
+                    stations.push(stationsCodes[i]);
+                    this.setState({ stations });
+                }
             }
+        } else {
+            this.setState({ stations: [] });
         }
     }
 
+    // Fetch trains information in current station using stationcode
+    // Send results on props to app component
     selectStation = async (code, station) => {
-        this.setState({searchText: station});
         let trains = [];
+        this.setState({ searchText: station });
         trains = await GetCurrentStation(code);
-        // let url = `https://rata.digitraffic.fi/api/v1/live-trains/station/${code}`;
-        // await fetch(url)
-        // .then(response => response.json())
-        // .then(data => data.map(item => trains.push(item)));
-        console.log(trains);
-
-        await this.props.result(trains, code, this.state.stations);
-        this.setState({results: []})
+        await this.props.result(trains, code, this.state.stationsCodes);
+        this.setState({ stations: [] });
     }
 
     render() {
         return (
             <div className="Search">
                 <Form>
-                    <Form.Group className="col col-sm-12 col-md-8 p-0">
-                        <Form.Label className="SearchTitle">Search for a station name</Form.Label>
-                        <Form.Control size="sm" type="search" value={this.state.searchText} onChange={(e) => this.handleSearch(e)} />
+                    <Form.Group className="col col-sm-12 col-md-8 p-0 m-0">
+                        <Form.Label className="SearchTitle">Hae aseman nimellä</Form.Label>
+                        <Form.Control list="stations" size="sm" type="search" value={this.state.searchText} onChange={(e) => this.handleSearch(e)} />
                     </Form.Group>
-                </Form>
-                
-                <div>
-                    <div className="SearchResultContainer">
-                        {this.state.results.map((item, index) => 
-                            <Button block variant="light" onClick={() => this.selectStation(item.code, item.station)} key={index}>
-                                {item.station}
-                            </Button>
+                    <ListGroup>
+                        {this.state.stations.map((item, index) =>
+                            <ListGroup.Item key={index} className="col col-sm-12 col-md-8 p-2 m-0" onClick={() => this.selectStation(item.code, item.station)}>{item.station}</ListGroup.Item>
                         )}
-                    </div>
-                </div>
+                    </ListGroup>
+                </Form>
             </div>
         )
     }

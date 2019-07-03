@@ -20,8 +20,7 @@ export async function GetStationCodes() {
 export async function GetCurrentStation(code) {
     let trains = [];
     try {
-
-        let url = `https://rata.digitraffic.fi/api/v1/live-trains/station/${code}`;
+        let url = `https://rata.digitraffic.fi/api/v1/live-trains/station/${code}?minutes_before_departure=15&minutes_after_departure=15&minutes_before_arrival=15&minutes_after_arrival=15`;
         await fetch(url)
         .then(response => response.json())
         .then(data => data.map(item => trains.push(item)));
@@ -30,14 +29,3 @@ export async function GetCurrentStation(code) {
         console.log(error);
     }
 }
-
-
-// export async function remove(urlName, id) {
-//     try {
-//       const url = `http://localhost:8000/${urlName}${id}`;
-//       const {data} = await axios.delete(url);
-//       return data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
