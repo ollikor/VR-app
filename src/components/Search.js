@@ -19,7 +19,7 @@ class Search extends Component {
         this.setState({ stationsCodes });
     }
 
-    // Get value from input and check if input value match with stations
+    // Get value from input, change first letter to upperCase and check if input value match with stations
     // Set all match to stations array
     handleSearch = async (e) => {
         let stations = [];
@@ -57,7 +57,7 @@ class Search extends Component {
                 <Form>
                     <Form.Group className="col col-sm-12 col-md-8 p-0 m-0">
                         <Form.Label className="SearchTitle">Hae aseman nimellä</Form.Label>
-                        <Form.Control list="stations" size="sm" type="search" value={this.state.searchText} onChange={(e) => this.handleSearch(e)} />
+                        <Form.Control onFocus={(e) => e.target.select()} list="stations" size="sm" type="search" value={this.state.searchText} onChange={(e) => this.handleSearch(e)} />
                     </Form.Group>
                     <ListGroup>
                         {this.state.stations.map((item, index) =>

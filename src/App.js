@@ -19,7 +19,7 @@ class App extends Component {
       <div className="col col-sm-12 col-md-6 p-0 App">
         <div className="Container">
           <Header />
-          <Search result={(trains, code, stations) => this.setState({trains: trains, code, stations})} />
+          <Search result={(trains, code, stations) => this.setState({trains, code, stations})} />
           <Results result={this.state.trains} code={this.state.code} stations={this.state.stations}/>
         </div>
       </div>

@@ -10,6 +10,10 @@ class TabContent extends Component {
             return {
                 color: '#b3b3b3'
             }
+        }else{
+            return {
+                color: '#262626'
+            }
         }
     }
 

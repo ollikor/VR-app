@@ -18,6 +18,7 @@ class Results extends Component {
         goes: 'Lähtee'
     }
 
+    // Get arrivaltrains from results
     getArrivalTrains = () => {
         let result = this.props.result;
         let trains = [];
@@ -28,10 +29,11 @@ class Results extends Component {
         let lateTime;
         let time;
 
-        console.log(result);
         if (result.length > 0) {
             for (let i = 0; i < result.length; i++) {
                 for (let j = 0; j < result[i].timeTableRows.length; j++) {
+                    // If stationShortCode and type match, change datestrings to datetime, take getTime, change to minutes and 
+                    // calculate difference between scheduledTime and actualTime
                     if (result[i].timeTableRows[j].stationShortCode === code) {
                         if (result[i].timeTableRows[j].type === 'ARRIVAL') {
                             let scheduledTime = result[i].timeTableRows[j].scheduledTime;
@@ -40,8 +42,8 @@ class Results extends Component {
                             let actualTimeToDate = new Date(actualTime);
                             let scheduledGetTime = scheduledTimeToDate.getTime();
                             let actualGetTime = actualTimeToDate.getTime();
-                            let scheduledGetTimeToMinutes = Math.floor(scheduledGetTime/60000);
-                            let actualGetTimeToMinutes = Math.floor(actualGetTime/60000);
+                            let scheduledGetTimeToMinutes = Math.floor(scheduledGetTime / 60000);
+                            let actualGetTimeToMinutes = Math.floor(actualGetTime / 60000);
                             time = scheduledTimeToDate;
 
                             if (scheduledGetTimeToMinutes - actualGetTimeToMinutes < 0) {
@@ -79,6 +81,7 @@ class Results extends Component {
         return trains;
     }
 
+    // Get departureTrains from results
     getDepartureTrains = () => {
         let result = this.props.result;
         let trains = [];
@@ -92,43 +95,50 @@ class Results extends Component {
         if (result.length > 0) {
             for (let i = 0; i < result.length; i++) {
                 for (let j = 0; j < result[i].timeTableRows.length; j++) {
+                    // If stationShortCode and type match, change datestrings to datetime, take getTime, change to minutes and 
+                    // calculate difference between scheduledTime and actualTime
                     if (result[i].timeTableRows[j].stationShortCode === code) {
                         if (result[i].timeTableRows[j].type === 'DEPARTURE') {
                             let scheduledTime = result[i].timeTableRows[j].scheduledTime;
                             let actualTime = result[i].timeTableRows[j].actualTime;
                             let scheduledTimeToDate = new Date(scheduledTime);
                             let actualTimeToDate = new Date(actualTime);
+                            let currentDate = new Date(Date.now());
+                            let currentDateGetTime = currentDate.getTime();
                             let scheduledGetTime = scheduledTimeToDate.getTime();
                             let actualGetTime = actualTimeToDate.getTime();
-                            let scheduledGetTimeToMinutes = Math.floor(scheduledGetTime/60000);
-                            let actualGetTimeToMinutes = Math.floor(actualGetTime/60000);
+                            let scheduledGetTimeToMinutes = Math.floor(scheduledGetTime / 60000);
+                            let actualGetTimeToMinutes = Math.floor(actualGetTime / 60000);
                             time = scheduledTimeToDate;
 
-                            if (scheduledGetTimeToMinutes - actualGetTimeToMinutes < 0) {
-                                lateTime = ('0' + actualTimeToDate.getHours()).slice(-2) + ':' + ('0' + actualTimeToDate.getMinutes()).slice(-2)
-                            } else {
-                                lateTime = null
-                            }
-
-                            // Get current stations name using stationShortCode
-                            for (let k = 0; k < stations.length; k++) {
-                                if (result[i].timeTableRows[0].stationShortCode === stations[k].code) {
-                                    departureStation = stations[k].station
+                            // If currentDateTime is after than scheduledTime, train will drop off from results
+                            if ((currentDateGetTime - scheduledGetTime) < 0) {
+                                if (scheduledGetTimeToMinutes - actualGetTimeToMinutes < 0) {
+                                    lateTime = ('0' + actualTimeToDate.getHours()).slice(-2) + ':' + ('0' + actualTimeToDate.getMinutes()).slice(-2)
+                                } else {
+                                    lateTime = null
                                 }
-                                if (result[i].timeTableRows[result[i].timeTableRows.length - 1].stationShortCode === stations[k].code) {
-                                    terminal = stations[k].station
-                                }
-                            }
 
-                            trains.push({
-                                trainType: result[i].trainType,
-                                trainNumber: result[i].trainNumber,
-                                departureStation: departureStation,
-                                terminal: terminal,
-                                cancelled: result[i].cancelled,
-                                time: time,
-                                lateTime: lateTime
-                            })
+                                // Get current stations name using stationShortCode
+                                for (let k = 0; k < stations.length; k++) {
+                                    if (result[i].timeTableRows[0].stationShortCode === stations[k].code) {
+                                        departureStation = stations[k].station
+                                    }
+                                    if (result[i].timeTableRows[result[i].timeTableRows.length - 1].stationShortCode === stations[k].code) {
+                                        terminal = stations[k].station
+                                    }
+                                }
+
+                                trains.push({
+                                    trainType: result[i].trainType,
+                                    trainNumber: result[i].trainNumber,
+                                    departureStation: departureStation,
+                                    terminal: terminal,
+                                    cancelled: result[i].cancelled,
+                                    time: time,
+                                    lateTime: lateTime
+                                })
+                            }
                         }
                     }
                 }
