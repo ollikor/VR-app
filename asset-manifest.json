@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/VR-app/static/css/main.346217fe.chunk.css",
+    "main.js": "/VR-app/static/js/main.47145a0f.chunk.js",
+    "main.js.map": "/VR-app/static/js/main.47145a0f.chunk.js.map",
+    "runtime~main.js": "/VR-app/static/js/runtime~main.766cba8d.js",
+    "runtime~main.js.map": "/VR-app/static/js/runtime~main.766cba8d.js.map",
+    "static/css/2.510409cd.chunk.css": "/VR-app/static/css/2.510409cd.chunk.css",
+    "static/js/2.d84d0945.chunk.js": "/VR-app/static/js/2.d84d0945.chunk.js",
+    "static/js/2.d84d0945.chunk.js.map": "/VR-app/static/js/2.d84d0945.chunk.js.map",
+    "index.html": "/VR-app/index.html",
+    "precache-manifest.5cd8d9c6c0bf28ee623ba367d1b40c04.js": "/VR-app/precache-manifest.5cd8d9c6c0bf28ee623ba367d1b40c04.js",
+    "service-worker.js": "/VR-app/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/VR-app/static/css/2.510409cd.chunk.css.map",
+    "static/css/main.346217fe.chunk.css.map": "/VR-app/static/css/main.346217fe.chunk.css.map"
+  }
+}
