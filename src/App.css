@@ -52,3 +52,11 @@ th {
   margin: 0;
   font-size: 12px;
 }
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.Error {
+  color: #ff0000;
+}

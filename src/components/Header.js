@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
+import texts from "../texts";
 
-const Header = () => (
-    <p className="Header">Aseman junatiedot</p>
-)
+export const Header = () => <p className="Header">{texts["header-text"]}</p>;
 
-export default Header;
