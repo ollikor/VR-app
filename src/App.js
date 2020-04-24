@@ -4,7 +4,7 @@ import "./App.css";
 
 import { Header } from "./components/Header";
 import Search from "./components/Search";
-import Results from "./components/Results";
+import Trains from "./components/Trains";
 
 class App extends Component {
   state = {
@@ -14,7 +14,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.trains);
     return (
       <div className="col col-sm-12 col-md-6 p-0 App">
         <div className="Container">
@@ -24,8 +23,8 @@ class App extends Component {
               this.setState({ trains, code, stations })
             }
           />
-          <Results
-            result={this.state.trains}
+          <Trains
+            trains={this.state.trains}
             code={this.state.code}
             stations={this.state.stations}
           />
