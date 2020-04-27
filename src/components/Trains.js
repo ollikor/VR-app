@@ -5,6 +5,7 @@ import { Tabs, Tab } from "react-bootstrap";
 import TabContent from "./TabContent";
 
 const Trains = (props) => {
+  // convert scheduletimes to better format and create latetime if train is late
   const convertDate = (trains) => {
     let lateTime;
     let newTrains = [];
@@ -24,9 +25,9 @@ const Trains = (props) => {
       // Made lateTime string
       scheduledTimeToMinutes - actualTimeToMinutes < 0
         ? (lateTime =
-            ("0" + new Date(trains[0].actualTime).getHours()).slice(-2) +
+            ("0" + new Date(trains[i].actualTime).getHours()).slice(-2) +
             ":" +
-            ("0" + new Date(trains[0].actualTime).getMinutes()).slice(-2))
+            ("0" + new Date(trains[i].actualTime).getMinutes()).slice(-2))
         : (lateTime = null);
 
       // Made scheduledTime string
@@ -44,6 +45,7 @@ const Trains = (props) => {
     return newTrains;
   };
 
+  // Check is trains arrival or departure and and create arrival and departure arrays 
   const getTrains = (trainType) => {
     let convert;
 
@@ -58,6 +60,7 @@ const Trains = (props) => {
 
     let arrivalTrains = [];
     let departureTrains = [];
+
     if (props !== undefined) {
       trains = props.trains;
       code = props.code;
@@ -67,6 +70,7 @@ const Trains = (props) => {
       code = null;
       stations = null;
     }
+
     if (trains.length) {
       for (let i = 0; i < trains.length; i++) {
         for (let j = 0; j < trains[i].timeTableRows.length; j++) {
@@ -82,7 +86,7 @@ const Trains = (props) => {
             terminal = stations.find((item) => item.code === terminalShortCode);
 
             if (trains[i].timeTableRows[j].type === "ARRIVAL") {
-              arrivalTrains.push({
+              const arrival = {
                 trainType: trains[i].trainType,
                 trainNumber: trains[i].trainNumber,
                 departureStation: departureStation.station,
@@ -90,9 +94,10 @@ const Trains = (props) => {
                 cancelled: trains[i].cancelled,
                 actualTime: trains[i].timeTableRows[j].actualTime,
                 scheduledTime: trains[i].timeTableRows[j].scheduledTime,
-              });
+              };
+              arrivalTrains.push(arrival);
             } else {
-              departureTrains.push({
+              const departure = {
                 trainType: trains[i].trainType,
                 trainNumber: trains[i].trainNumber,
                 departureStation: departureStation.station,
@@ -100,7 +105,8 @@ const Trains = (props) => {
                 cancelled: trains[i].cancelled,
                 actualTime: trains[i].timeTableRows[j].actualTime,
                 scheduledTime: trains[i].timeTableRows[j].scheduledTime,
-              });
+              };
+              departureTrains.push(departure);
             }
           }
         }
@@ -119,7 +125,7 @@ const Trains = (props) => {
 
   // Get arrivaltrains from trainss
   return (
-    <div className="trainss">
+    <div>
       <Tabs id="controlled-tab">
         <Tab eventKey="arrival" title="Arrival">
           <TabContent

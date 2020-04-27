@@ -3,12 +3,6 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 const TabContent = (props) => {
-  let trains;
-  if (props.trains !== undefined) {
-    trains = props.trains;
-  } else {
-    trains = null;
-  }
 
   const cancelledStyle = (value, index) => {
     let backgroundColor = "#ffffff";
@@ -41,8 +35,8 @@ const TabContent = (props) => {
           </tr>
         </thead>
         <tbody>
-          {trains !== null
-            ? trains.map(
+          {props.trains !== null && props.trains !== undefined
+            ? props.trains.map(
                 (item, index) => (
                   (
                     <tr

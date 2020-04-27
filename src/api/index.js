@@ -1,3 +1,5 @@
+import texts from "../texts";
+
 function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);
@@ -7,7 +9,8 @@ function handleErrors(response) {
 
 function FetchData(url) {
   if (window.navigator.onLine === false) {
-    throw new Error("No internet connection");
+    const error = texts["no-internet"];
+    throw new Error(error);
   } else {
       return fetch(url)
         .then(handleErrors)

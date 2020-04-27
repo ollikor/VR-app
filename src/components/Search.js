@@ -3,8 +3,9 @@ import { Component } from "react";
 
 import { GetStationCodes, GetCurrentStation } from "../api/index";
 
-import { Form, ListGroup } from "react-bootstrap";
 import texts from "../texts";
+
+import { BigLoader } from "./Loaders";
 
 class Search extends Component {
   state = {
@@ -12,6 +13,7 @@ class Search extends Component {
     stations: [],
     newStationsCodes: [],
     error: "",
+    loading: false,
   };
 
   // Fetch all stationscodes from API
@@ -25,7 +27,6 @@ class Search extends Component {
       }));
       this.setState({ newStationsCodes });
     } catch (error) {
-      console.error(error);
       this.setState({ error: error.message });
     }
   }
@@ -54,112 +55,68 @@ class Search extends Component {
     }
   };
 
-  // Fetch trains information in current station using stationcode
+  // Fetch trains information from current station using stationcode
   // Send results on props to app component
-  selectStation = async (e, code, station) => {
+  selectStation = async (e) => {
     e.preventDefault();
-    this.setState({ searchText: station });
-    try {
-      let trains = await GetCurrentStation(code);
-      if (trains.length) {
-        this.props.result(trains, code, this.state.newStationsCodes);
-      } else {
-        const error = texts.emptyTrainArray;
-        this.setState({ error });
-        this.props.result([]);
+    if (this.state.searchText !== "") {
+      let stationCode = this.state.newStationsCodes.find(
+        (item) => item.station === this.state.searchText
+      );
+      if (stationCode) {
+        this.setState({ loading: true });
+        try {
+          let trains = await GetCurrentStation(stationCode.code);
+          if (trains.length) {
+            this.props.result(
+              trains,
+              stationCode.code,
+              this.state.newStationsCodes
+            );
+          } else {
+            const error = texts["empty-trainarray"];
+            this.setState({ error });
+            this.props.result([]);
+          }
+          this.setState({ stations: [], loading: false });
+        } catch (error) {
+          console.log(error);
+          this.setState({ error: error.message, stations: [] });
+        }
       }
-      this.setState({ stations: [] });
-    } catch (error) {
-      console.error(error);
-      this.setState({ error: error.message, stations: [] });
     }
+    this.setState({ loading: false });
   };
-
-  // submit(e) {
-  //   e.preventDefault();
-  //   var getvalue = document.getElementById("option");
-  //   console.log(getvalue.value);
-  // }
 
   render() {
     return (
-      // <form className="Search">
-      //   <label className="SearchTitle">{texts["search-label-text"]}</label>
-      //   <input
-      //     onFocus={(e) => e.target.select()}
-      //     type="search"
-      //     list="trains"
-      //     // name="trains"
-      //     value={this.state.searchText}
-      //     onChange={(e) => this.handleSearch(e)}
-      //   />
-      //   <datalist id="trains">
-      //     {this.state.stations.map((item, index) => (
-      //       <option
-      //           id="option"
-      //         value={item.station}
-      //         key={index}
-      //         className="col col-sm-12 col-md-8 p-2 m-0"
-      //       //   onClick={(e) => this.selectStation(e, item.code, item.station)}
-      //       >
-      //       </option>
-      //     ))}
-      //   </datalist>
-      //   </form>
-
-      /* <input list="trains" name="train">
-                    <datalist id="trains">
-                        {this.state.stations.map((item, index) =>
-                            <option
-                                key={index}
-                                className="col col-sm-12 col-md-8 p-2 m-0"
-                                onClick={() => this.selectStation(item.code, item.station)}>{item.station}
-                            </option>
-                        )}
-                    </datalist>
-                </input> */
-      <Form className="Search">
-        <Form.Group className="col col-sm-12 col-md-8 p-0 m-0">
-          <Form.Label className="SearchTitle">
-            Search with station name
-          </Form.Label>
-          <Form.Control
+      <form onSubmit={(e) => this.selectStation(e)} className="Search">
+        <div className="SearchContent">
+          <label className="SearchTitle">{texts["search-label-text"]}</label>
+          <input
             onFocus={(e) => e.target.select()}
-            list="stations"
-            size="sm"
             type="search"
+            list="trains"
+            name="trains"
             value={this.state.searchText}
             onChange={(e) => this.handleSearch(e)}
           />
-        </Form.Group>
-
-        <ListGroup>
+        </div>
+        <datalist id="trains">
           {this.state.stations.map((item, index) => (
-            <ListGroup.Item
+            <option
+              id="option"
+              value={item.station}
               key={index}
               className="col col-sm-12 col-md-8 p-2 m-0"
-              onClick={(e) => this.selectStation(e, item.code, item.station)}
-            >
-              {item.station}
-            </ListGroup.Item>
+            ></option>
           ))}
-        </ListGroup>
+        </datalist>
         {this.state.error ? <p className="Error">{this.state.error}</p> : null}
-      </Form>
+        {this.state.loading ? <BigLoader /> : null}
+      </form>
     );
   }
 }
 
 export default Search;
-
-{
-  /* <select>
-{this.state.stations.map((item, index) =>
-        <option
-            key={index}
-            className="col col-sm-12 col-md-8 p-2 m-0"
-            onClick={() => this.selectStation(item.code, item.station)}>{item.station}
-        </option>
-    )}
-</select> */
-}
