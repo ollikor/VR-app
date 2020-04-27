@@ -1,17 +1,25 @@
 {
   "files": {
-    "main.css": "/VR-app/static/css/main.346217fe.chunk.css",
-    "main.js": "/VR-app/static/js/main.47145a0f.chunk.js",
-    "main.js.map": "/VR-app/static/js/main.47145a0f.chunk.js.map",
-    "runtime~main.js": "/VR-app/static/js/runtime~main.766cba8d.js",
-    "runtime~main.js.map": "/VR-app/static/js/runtime~main.766cba8d.js.map",
-    "static/css/2.510409cd.chunk.css": "/VR-app/static/css/2.510409cd.chunk.css",
-    "static/js/2.d84d0945.chunk.js": "/VR-app/static/js/2.d84d0945.chunk.js",
-    "static/js/2.d84d0945.chunk.js.map": "/VR-app/static/js/2.d84d0945.chunk.js.map",
+    "main.css": "/VR-app/static/css/main.5f8d777e.chunk.css",
+    "main.js": "/VR-app/static/js/main.00711787.chunk.js",
+    "main.js.map": "/VR-app/static/js/main.00711787.chunk.js.map",
+    "runtime-main.js": "/VR-app/static/js/runtime-main.200a5489.js",
+    "runtime-main.js.map": "/VR-app/static/js/runtime-main.200a5489.js.map",
+    "static/css/2.7a75a24e.chunk.css": "/VR-app/static/css/2.7a75a24e.chunk.css",
+    "static/js/2.a2887336.chunk.js": "/VR-app/static/js/2.a2887336.chunk.js",
+    "static/js/2.a2887336.chunk.js.map": "/VR-app/static/js/2.a2887336.chunk.js.map",
     "index.html": "/VR-app/index.html",
-    "precache-manifest.5cd8d9c6c0bf28ee623ba367d1b40c04.js": "/VR-app/precache-manifest.5cd8d9c6c0bf28ee623ba367d1b40c04.js",
+    "precache-manifest.96d5e125a34b594540caca5351b14161.js": "/VR-app/precache-manifest.96d5e125a34b594540caca5351b14161.js",
     "service-worker.js": "/VR-app/service-worker.js",
-    "static/css/2.510409cd.chunk.css.map": "/VR-app/static/css/2.510409cd.chunk.css.map",
-    "static/css/main.346217fe.chunk.css.map": "/VR-app/static/css/main.346217fe.chunk.css.map"
-  }
+    "static/css/2.7a75a24e.chunk.css.map": "/VR-app/static/css/2.7a75a24e.chunk.css.map",
+    "static/css/main.5f8d777e.chunk.css.map": "/VR-app/static/css/main.5f8d777e.chunk.css.map",
+    "static/js/2.a2887336.chunk.js.LICENSE.txt": "/VR-app/static/js/2.a2887336.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.200a5489.js",
+    "static/css/2.7a75a24e.chunk.css",
+    "static/js/2.a2887336.chunk.js",
+    "static/css/main.5f8d777e.chunk.css",
+    "static/js/main.00711787.chunk.js"
+  ]
 }
