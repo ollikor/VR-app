@@ -88,13 +88,18 @@ class Search extends Component {
     this.setState({ loading: false });
   };
 
+  submit() {
+    document.getElementById("search").blur();
+  }
+
   render() {
     return (
-      <form onSubmit={(e) => this.selectStation(e)} className="Search">
+      <form id="search" onSubmit={(e) => this.selectStation(e)} className="Search">
         <div className="SearchContent">
           <label className="SearchTitle">{texts["search-label-text"]}</label>
           <input
             onFocus={(e) => e.target.select()}
+            onBlur={(e) => this.selectStation(e)}
             type="search"
             list="trains"
             name="trains"
