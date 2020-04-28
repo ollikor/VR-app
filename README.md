@@ -1,4 +1,4 @@
-![alt text](images\searchResult.PNG "searchResult")
+![alt text](https://github.com/ollikor/VR-app/blob/master/images/searchResult.PNG "searchResult")
 
 ## Project name
 VR-app
@@ -90,8 +90,8 @@ There is one search input for searching stations. Any station which match with t
 
 
 
-![alt text](images\search.PNG "search")
+![alt text](https://github.com/ollikor/VR-app/blob/master/images/search.PNG "search")
 
 
 
-![alt text](images\error.PNG "error")
+![alt text](https://github.com/ollikor/VR-app/blob/master/images/error.PNG "error")
