@@ -1,4 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt text](images\searchResult.PNG "searchResult")
+
+## Project name
+VR-app
+
+## Description
+VR-app is small react application for searching incoming and outcoming trains at selected station.
+
+## Installation
+
+### Clone repository
+git clone https://github.com/ollikor/VR-app.git
+
+### Install node modules 
+npm install
 
 ## Available Scripts
 
@@ -66,3 +80,18 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+## Usage
+
+There is one search input for searching stations. Any station which match with text will show below and it is possible to use arrow keys to select station. If there is not any trains in the station it will show error for you. If search succeed, trains will show on the list. All incoming trains will show on the Arrival tab and all outcoming trains on the departure tab. If train is late, current time will show in red and scheduled time in below inside brackets. If train is cancelled, train information show in gray and cancelled text appears in below in red.
+
+![alt text](images\searchResult.PNG "searchResult")
+
+
+
+![alt text](images\search.PNG "search")
+
+
+
+![alt text](images\error.PNG "error")
