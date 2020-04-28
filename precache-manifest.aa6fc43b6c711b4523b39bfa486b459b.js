@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d5d2a3a5049737737a7647e6410bcd68",
+    "revision": "d68da1b259b8bcfc7a9c236ecd921339",
     "url": "/VR-app/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/VR-app/static/css/2.7a75a24e.chunk.css"
   },
   {
-    "revision": "8bc68ac342561dd1410c",
+    "revision": "d11ba7e57e80e76517df",
     "url": "/VR-app/static/css/main.5f8d777e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/VR-app/static/js/2.a2887336.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8bc68ac342561dd1410c",
-    "url": "/VR-app/static/js/main.972f133e.chunk.js"
+    "revision": "d11ba7e57e80e76517df",
+    "url": "/VR-app/static/js/main.f1f16e9c.chunk.js"
   },
   {
     "revision": "4d8f1012de1da22922d9",
