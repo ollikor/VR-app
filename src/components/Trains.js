@@ -4,6 +4,8 @@ import { Tabs, Tab } from "react-bootstrap";
 
 import TabContent from "./TabContent";
 
+import texts from '../texts';
+
 const Trains = (props) => {
   // convert scheduletimes to better format and create latetime if train is late
   const convertDate = (trains) => {
@@ -127,21 +129,21 @@ const Trains = (props) => {
   return (
     <div>
       <Tabs id="controlled-tab">
-        <Tab eventKey="arrival" title="Arrival">
+        <Tab eventKey="arrival" title={texts["arrival"]}>
           <TabContent
-            titleOne="Train"
-            titleTwo="Departure station"
-            titleThree="Terminal"
-            titleFour="arrives"
+            titleOne={texts["train"]}
+            titleTwo={texts["departure-station"]}
+            titleThree={texts["terminal"]}
+            titleFour={texts["arrives"]}
             trains={getTrains("ARRIVAL")}
           />
         </Tab>
-        <Tab eventKey="departure" title="departure">
+        <Tab eventKey="departure" title={texts["departure"]}>
           <TabContent
-            titleOne="Train"
-            titleTwo="Departure station"
-            titleThree="Terminal"
-            titleFour="Goes"
+            titleOne={texts["train"]}
+            titleTwo={texts["departure-station"]}
+            titleThree={texts["terminal"]}
+            titleFour={texts["goes"]}
             trains={getTrains("DEPARTURE")}
           />
         </Tab>

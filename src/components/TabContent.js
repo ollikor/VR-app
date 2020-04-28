@@ -2,6 +2,8 @@ import React from "react";
 
 import { Table } from "react-bootstrap";
 
+import texts from '../texts';
+
 const TabContent = (props) => {
 
   const cancelledStyle = (value, index) => {
@@ -58,7 +60,7 @@ const TabContent = (props) => {
                           item.scheduledTime
                         )}
                         {item.cancelled ? (
-                          <p className="Cancelled">Cancelled</p>
+                          <p className="Cancelled">{texts["cancelled"]}</p>
                         ) : null}
                       </td>
                     </tr>
