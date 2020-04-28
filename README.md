@@ -86,7 +86,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 There is one search input for searching stations. Any station which match with text will show below and it is possible to use arrow keys to select station. If there is not any trains in the station it will show error for you. If search succeed, trains will show on the list. All incoming trains will show on the Arrival tab and all outcoming trains on the departure tab. If train is late, current time will show in red and scheduled time in below inside brackets. If train is cancelled, train information show in gray and cancelled text appears in below in red.
 
-![alt text](images\searchResult.PNG "searchResult")
+![alt text](https://github.com/ollikor/VR-app/blob/master/images/searchResult.PNG "searchResult")
 
 
 
